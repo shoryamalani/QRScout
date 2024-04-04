@@ -1,7 +1,7 @@
 {
   "$schema": "../schema.json",
   "title": "QRScout",
-  "page_title": "Crescendo",
+  "page_title": "422 Crescendo Scouting",
   "sections": [
     {
       "name": "Prematch",
@@ -17,101 +17,74 @@
           "title": "Match Number",
           "type": "number",
           "required": true,
-          "code": "matchNumber",
-          "preserveDataOnReset": true,
-          "autoIncrementOnReset": true
+          "code": "matchNumber"
         },
         {
-          "title": "Robot",
+          "title": "Robot Position",
           "type": "select",
           "required": true,
           "code": "robot",
           "choices": {
-            "R1": "Red 1",
-            "R2": "Red 2",
-            "R3": "Red 3",
-            "B1": "Blue 1",
-            "B2": "Blue 2",
-            "B3": "Blue 3"
+            "Red 1": "R1",
+            "Red 2": "R2",
+            "Red 3": "R3",
+            "Blue 1": "B1",
+            "Blue 2": "B2",
+            "Blue 3": "B3"
           },
-          "defaultValue": "R1"
+          "defaultValue": "Red 1"
         },
         {
           "title": "Team Number",
           "type": "number",
           "required": true,
-          "code": "teamNumber"
+          "code": "team"
         },
         {
           "title": "Starting Position",
           "type": "select",
-          "required": true,
-          "code": "Prsp",
-          "choices": {
-            "R1": "Source",
-            "R2": "Middle",
-            "R3": "Amp"
-          },
-          "defaultValue": ""
-        },
-        {
-          "title": "No Show",
-          "type": "boolean",
-          "defaultValue": false,
           "required": false,
-          "code": "noShow"
+          "code": "starting",
+          "choices": {
+            "Source Side": "Source Side",
+            "Amp Side": "Amp Side",
+            "Middle": "Middle"
+          },
+          "defaultValue": "1"
         }
       ]
     },
     {
       "name": "Autonomous",
+      "preserveDataOnReset": false,
       "fields": [
         {
-          "title": "Moved?",
+          "title": "Mobility",
           "type": "boolean",
-          "defaultValue": false,
           "required": false,
-          "code": "Mved"
+          "defaultValue": false,
+          "code": "mobility"
         },
         {
-          "code": "ausc",
-          "title": "Speaker Scored",
+          "title": "Amp",
           "type": "counter",
           "defaultValue": 0,
-          "min": 0,
-          "required": false
+          "required": false,
+          "code": "ampA"
         },
         {
-          "code": "auskpm",
-          "title": "Speaker Missed",
+          "title": "Speaker",
           "type": "counter",
           "defaultValue": 0,
-          "min": 0,
-          "required": false
+          "required": false,
+          "code": "speakerA"
         },
         {
-          "code": "a_gp_Path",
-          "title": "Auto Game Piece Path",
-          "type": "select",
-          "multiSelect": true,
-          "choices": {
-            "1": "Speaker 3 (Source Side)",
-            "2": "Speaker 2 (Middle)",
-            "3": "Speaker 1 (Amp Side)",
-            "4": "Midline 5 (Source Edge)",
-            "5": "Midline 4",
-            "6": "Midline 3 (Middle)",
-            "7": "Midline 2",
-            "8": "Midline 1 (Amp Edge)"
-          }
-        },
-        {
-          "code": "auf",
-          "title": "Auto Foul",
+          "title": "Missed",
           "type": "counter",
           "defaultValue": 0,
-          "min": 0,
-          "required": false
+          "required": false,
+          "code": "missedA"
         }
       ]
     },
@@ -119,40 +92,36 @@
       "name": "Teleop",
       "fields": [
         {
-          "code": "tamps",
-          "title": "Amp Scored",
+          "code": "ampT",
+          "title": "Amp",
           "type": "counter",
           "defaultValue": 0,
-          "min": 0,
           "required": false
         },
         {
-          "code": "tsc",
-          "title": "Speaker Scored",
+          "code": "speakerT",
+          "title": "Speaker",
           "type": "counter",
           "defaultValue": 0,
-          "min": 0,
           "required": false
         },
         {
-          "code": "tfs",
-          "title": "Feeder Shots",
+          "code": "sourceIntakeT",
+          "title": "Source Intake",
           "type": "counter",
           "defaultValue": 0,
-          "min": 0,
           "required": false
         },
         {
-          "code": "cn",
-          "title": "Note in Trap?",
+          "code": "stealT",
+          "title": "Steal Intake",
           "type": "counter",
           "defaultValue": 0,
-          "min": 0,
           "required": false
         },
         {
-          "code": "Fou/Tech",
-          "title": "Teleop Foul",
+          "code": "missedT",
+          "title": "Missed",
           "type": "counter",
           "defaultValue": 0,
           "required": false
@@ -163,17 +132,32 @@
       "name": "Endgame",
       "fields": [
         {
-          "title": "End Position",
-          "type": "select",
-          "required": true,
-          "code": "epo",
-          "choices": {
-            "No": "No Climb",
-            "P": "Parked",
-            "Os": "Onstage",
-            "Hm": "Harmony"
-          },
-          "defaultValue": "No"
+          "code": "onstage",
+          "title": "Onstage",
+          "type": "boolean",
+          "defaultValue": false,
+          "required": false
+        },
+        {
+          "code": "harmony",
+          "title": "Harmony",
+          "type": "boolean",
+          "defaultValue": false,
+          "required": false
+        },
+        {
+          "code": "trap",
+          "title": "Trap",
+          "type": "boolean",
+          "defaultValue": false,
+          "required": false
+        },
+        {
+          "code": "parked",
+          "title": "Parked",
+          "type": "boolean",
+          "defaultValue": false,
+          "required": false
         }
       ]
     },
@@ -181,52 +165,7 @@
       "name": "Postmatch",
       "fields": [
         {
-          "code": "or",
-          "title": "Offense Skill",
-          "type": "select",
-          "choices": {
-            "1": "Not Effective",
-            "2": "Average",
-            "3": "Very Effective",
-            "x": "Not Observed"
-          },
-          "defaultValue": "x",
-          "required": false
-        },
-        {
-          "code": "dr",
-          "title": "Defense Skill",
-          "type": "select",
-          "choices": {
-            "1": "Not Effective",
-            "2": "Average",
-            "3": "Very Effective",
-            "x": "Not Observed"
-          },
-          "defaultValue": "x",
-          "required": false
-        },
-        {
-          "code": "dto",
-          "title": "Died/Tipped Over",
-          "type": "boolean",
-          "defaultValue": false,
-          "required": false
-        },
-        {
-          "code": "yc",
-          "title": "Yellow/Red Card",
-          "type": "select",
-          "defaultValue": "No Card",
-          "required": true,
-          "choices": {
-            "No Card": "No Card",
-            "Yellow": "Yellow Card",
-            "Red": "Red Card"
-          }
-        },
-        {
-          "code": "co",
+          "code": "comments",
           "title": "Comments",
           "type": "text",
           "min": 0,
