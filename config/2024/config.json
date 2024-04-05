@@ -106,15 +106,8 @@
           "required": false
         },
         {
-          "code": "sourceIntakeT",
-          "title": "Source Intake",
-          "type": "counter",
-          "defaultValue": 0,
-          "required": false
-        },
-        {
-          "code": "stealT",
-          "title": "Steal Intake",
+          "code": "farIntakeT",
+          "title": "Far Intake",
           "type": "counter",
           "defaultValue": 0,
           "required": false
